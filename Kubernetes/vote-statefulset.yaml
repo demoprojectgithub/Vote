@@ -1,12 +1,12 @@
 apiVersion: apps/v1
-kind: Statefulset
+kind: StatefulSet
 metadata:
   labels:
     app: vote
   name: vote
   namespace: vote
 spec:
-  replicas: 1
+  serviceName: "vote"
   selector:
     matchLabels:
       app: vote
