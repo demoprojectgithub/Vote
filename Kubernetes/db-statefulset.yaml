@@ -6,7 +6,7 @@ metadata:
   name: db
   namespace: vote
 spec:
-  replicas: 1
+  serviceName: "db"
   selector:
     matchLabels:
       app: db
@@ -16,7 +16,7 @@ spec:
         app: db
     spec:
       containers:
-      - image: postgres:9.4
+      - image: postgres:latest
         name: postgres
         env:
         - name: POSTGRES_USER
@@ -31,4 +31,5 @@ spec:
           name: db-data
       volumes:
       - name: db-data
-        emptyDir: {} 
+        persistentVolumeClaim:
+          claimName: voteapp-pv-claim
